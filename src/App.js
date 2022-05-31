@@ -15,10 +15,8 @@ export default function App(){
   let [tracks, setTracks] = useState({selectedTrack: '', listOfTracks: []});
   let [song, setSong] = useState(null);
 
-  useEffect(() => {
-
-    //request for access token
-    axios('https://accounts.spotify.com/api/token', {
+  async function getToken(){
+    await axios('https://accounts.spotify.com/api/token', {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': 'Basic ' + btoa(spotify.ClientID + ':' + spotify.ClientSecret) //btoa for converting tring to base64 format
@@ -26,23 +24,29 @@ export default function App(){
       data:'grant_type=client_credentials',
       method: 'POST'
     }).then(tokenResponse => {
-      setToken(tokenResponse.data.access_token)
+      setToken(tokenResponse.data.access_token);
+    });
+  }
+  
+  useEffect(() => {
 
+    //request for access token
+    getToken();
+  
     //get 20 (default) spotify playlist categories 
-    axios(`https://api.spotify.com/v1/browse/categories?country=US`, {
+    axios(`https://api.spotify.com/v1/browse/categories`, {
       headers: {
         'Authorization': 'Bearer ' + token
       },
       method: 'GET'
-    }).then(categoryResponse => {
-      setCategories({
-        selectedCategory: categories.selectedCategory,
-        listOfAPICategories: categoryResponse.data.categories.items
+      }).then(categoryResponse => {
+        setCategories({
+          selectedCategory: categories.selectedCategory,
+          listOfAPICategories: categoryResponse.data.categories.items
       })
     })
 
-    })
-  }, [categories.selectedCategory, playlists.selectedPlaylists, spotify.ClientID, spotify.ClientSecret]); //setting dependency to be the selected dropdown values 
+  }, [categories.selectedCategory, playlists.selectedPlaylists, spotify.ClientID, spotify.ClientSecret]); //setting dependency to be the selected dropdown values
 
   //function to set category when a different category selected
   const categoryChange = (category) => {
@@ -104,7 +108,7 @@ export default function App(){
       <div className='app'>
         <Dropdown data={categories.listOfAPICategories} selectedVal={categories.selectedCategory} changed={categoryChange}/>
         <Dropdown data={playlists.listOfAPIPlaylists} selectedVal={playlists.selectedGenre} changed={ playlistChange }/>
-        <button type='submit'>SEARCH</button>
+        <button type='submit' className="btn" >SEARCH</button>
         <List data={tracks.listOfTracks} listClicked={listClicked}/>
         { song && <TrackInfo {...song} /> }
       </div>

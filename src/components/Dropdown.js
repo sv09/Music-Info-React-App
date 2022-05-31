@@ -5,10 +5,17 @@ const Dropdown = (props) => {
         props.changed(e.target.value)
     }
     return (
-       <div>
-           <select value={props.selectedVal} onChange={DropdownSelected}>
+       <div className="dropdown">
+           <select 
+                value={props.selectedVal} 
+                onChange={DropdownSelected} 
+                className="dropdown-select">
                { props.data.map((val, idx) => 
-                 <option key={idx} value={val.id}>{val.name}</option>)
+                    <option 
+                        key={idx} 
+                        value={val.id}>
+                        {val.name}
+                    </option> )
                }
            </select>
        </div>

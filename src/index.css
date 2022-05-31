@@ -1,6 +1,47 @@
+/* import google font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
 body {
   margin: 0;
   padding: 0;
   background-color: #ffffff;
   text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.dropdown{
+  width: 100%;
+  padding: 0 5px 2px 5px;
+}
+
+.dropdown-select{
+  width: 100%;
+  background-color: #e0e0e0;
+  color: #343434;
+  padding: 10px;
+  text-align: center;
+  border: none;
+}
+
+.list-button{
+  padding: 8px;
+  background-color: #a6a6a6;
+  color: #fafafa;
+  margin: 5px;
+  border: none;
+}
+
+.btn{
+  width: 100%;
+  padding: 10px;
+  margin: 10px 5px 15px 5px;
+  background-color: #a6a6a6;
+  border-color: #fafafa;
+  color: #fafafa;
+  border-style: solid;
+  border-radius: 10px;
+}
+
+#img{
+  margin-top: 20px;
 }

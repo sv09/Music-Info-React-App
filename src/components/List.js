@@ -6,11 +6,13 @@ const List = (props) => {
         props.listClicked(e.target.value);
     }
     return (
-        <div>
+        <div className="list">
             { props.data.map((item, idx) => 
                 <button key={idx} 
                         value={item.track.id} 
-                        onClick={trackSelected}>{item.track.name}
+                        onClick={trackSelected}
+                        className="list-button">
+                    {item.track.name}
                 </button> )
             }
         </div>
