@@ -1,7 +1,12 @@
-# Music Info App
+# Music Info React App
 
 The app will display information of the track that a user selects by filtering track categories (first dropdown) and playlist based on the chosen category (second dropdown).
 
+### Mobile Layout
+![Mobile Layout image](mobile_layout.png)
+
+### Desktop Layout
+![Desktop Layout image](desktop_layout.png)
 
 ## Available Scripts
 
