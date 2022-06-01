@@ -7,11 +7,27 @@ body {
   background-color: #ffffff;
   text-align: center;
   font-family: 'Roboto Condensed', sans-serif;
+  max-height: 100vh;
+}
+
+#app-title{
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+  color: #343434;
 }
 
 .dropdown{
+  width: 70%;
+  /* padding: 0 5px 2px 5px; */
+}
+
+.dropdown-container{
   width: 100%;
-  padding: 0 5px 2px 5px;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-evenly;
 }
 
 .dropdown-select{
@@ -23,6 +39,38 @@ body {
   border: none;
 }
 
+.dropdown-text{
+  color: #343434;
+}
+
+.search-container{
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-evenly;
+}
+
+.search-btn{
+  width: 70%;
+  padding: 10px;
+  margin: 10px 5px 15px 5px;
+  background-color: #a6a6a6;
+  border-color: #fafafa;
+  color: #fafafa;
+  border-style: solid;
+  border-radius: 10px;
+}
+
+#search-text{
+  color: #ffffff;
+}
+
+.list-container {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
 .list-button{
   padding: 8px;
   background-color: #a6a6a6;
@@ -31,15 +79,9 @@ body {
   border: none;
 }
 
-.btn{
-  width: 100%;
-  padding: 10px;
-  margin: 10px 5px 15px 5px;
-  background-color: #a6a6a6;
-  border-color: #fafafa;
-  color: #fafafa;
-  border-style: solid;
-  border-radius: 10px;
+.trackInfo-container {
+  display: flex;
+  justify-content: center;
 }
 
 #img{

@@ -19,7 +19,7 @@ export default function App(){
     await axios('https://accounts.spotify.com/api/token', {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic ' + btoa(spotify.ClientID + ':' + spotify.ClientSecret) //btoa for converting tring to base64 format
+        'Authorization': 'Basic ' + btoa(spotify.ClientID + ':' + spotify.ClientSecret) //btoa for converting string to base64 format
       },
       data:'grant_type=client_credentials',
       method: 'POST'
@@ -61,13 +61,11 @@ export default function App(){
       },
       method: 'GET'
     }).then(playListResponse => {
-      // console.log(playListResponse)
       setPlaylists({
         selectedCategory: playlists.selectedPlaylists,
         listOfAPIPlaylists: playListResponse.data.playlists.items
       })
     })
-    // console.log(category)
   }
 
    //function to set playlist when a different one selected from the dropdown
@@ -76,7 +74,6 @@ export default function App(){
       selectedPlaylists: playlist,
       listOfAPIPlaylists: playlists.listOfAPIPlaylists
     })
-    // console.log('playlist - ', playlist)
   }
 
   const buttonClicked = (e) => {
@@ -89,7 +86,6 @@ export default function App(){
       },
       method: 'GET'
     }).then(list => {
-      // console.log('list - ', list.data.items)
       setTracks({
         selectedTrack: tracks.selectedTrack,
         listOfTracks: list.data.items
@@ -106,11 +102,24 @@ export default function App(){
   return (
     <form onSubmit={buttonClicked}>
       <div className='app'>
-        <Dropdown data={categories.listOfAPICategories} selectedVal={categories.selectedCategory} changed={categoryChange}/>
-        <Dropdown data={playlists.listOfAPIPlaylists} selectedVal={playlists.selectedGenre} changed={ playlistChange }/>
-        <button type='submit' className="btn" >SEARCH</button>
-        <List data={tracks.listOfTracks} listClicked={listClicked}/>
-        { song && <TrackInfo {...song} /> }
+        <div className='dropdown-container'>
+          <p className='dropdown-text'>Category</p>
+          <Dropdown data={categories.listOfAPICategories} selectedVal={categories.selectedCategory} changed={categoryChange}/>
+        </div>
+        <div className='dropdown-container'>
+          <p className='dropdown-text'>Playlist</p>
+          <Dropdown data={playlists.listOfAPIPlaylists} selectedVal={playlists.selectedGenre} changed={ playlistChange }/>
+        </div>
+        <div className='search-container'>
+          <p id='search-text'>Search</p>
+          <button type='submit' className="search-btn">SEARCH</button>
+        </div>
+        <div className='list-container'>
+          <List data={tracks.listOfTracks} listClicked={listClicked}/>
+        </div>
+        <div className='trackInfo-container'>
+          { song && <TrackInfo {...song} /> }
+        </div>
       </div>
     </form>
   );
